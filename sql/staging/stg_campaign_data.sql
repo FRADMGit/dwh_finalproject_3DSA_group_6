@@ -5,3 +5,5 @@ SELECT DISTINCT
     regexp_replace(campaign_description, '^.*-\s*', '') AS campaign_description_person,
     (regexp_replace(discount, '[^0-9\.]', '', 'g')::FLOAT / 100) AS campaign_discount
 FROM {{ ref('clean_campaign_data') }}
+WHERE campaign_id IS NOT NULL
+    campaign_discount IS NOT NULL
