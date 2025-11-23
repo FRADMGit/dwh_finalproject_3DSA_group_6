@@ -5,3 +5,5 @@ SELECT DISTINCT
     transaction_date AS order_transaction_date
 FROM
     {{ ref('clean_order_data') }}
+WHERE order_id IS NOT NULL
+    AND user_id IS NOT NULL
