@@ -71,8 +71,10 @@ SELECT DISTINCT
     s.staff_id,
     s.staff_name,
     a.campaign_id,
-    a.order_transaction_date
+    a.order_transaction_date,
+    d.order_delay_days
 FROM affliations a
 JOIN correct_user u ON a.order_id = u.order_id
 JOIN correct_merchant m ON a.order_id = m.order_id
 JOIN correct_staff s ON a.order_id = s.order_id
+JOIN {{ ref('stg_order_delays') }} d ON a.order_id = d.order_id
