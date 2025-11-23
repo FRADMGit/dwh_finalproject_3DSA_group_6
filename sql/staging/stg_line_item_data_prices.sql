@@ -5,5 +5,7 @@ SELECT DISTINCT
     REGEXP_REPLACE(quantity, '[^0-9\.]', '', 'g') AS line_quantity
 FROM
     {{ ref('clean_line_item_data_prices') }}
+WHERE "Unnamed: 0" IS NOT NULL
+    AND order_id IS NOT NULL
 ORDER BY
     "Unnamed: 0" ASC
