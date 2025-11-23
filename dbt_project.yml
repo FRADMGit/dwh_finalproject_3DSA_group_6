@@ -1,0 +1,4 @@
+name: 'ShopZada'
+config-version: 2
+profile: 'ShopZada'
+model-paths: ["sql"]
