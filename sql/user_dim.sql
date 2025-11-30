@@ -46,4 +46,4 @@ SELECT
     user_job,
     user_job_level
 FROM ranked_users
-WHERE rn = 1;
+WHERE rn = 1
