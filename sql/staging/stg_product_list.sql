@@ -28,4 +28,4 @@ SELECT DISTINCT
 FROM {{ ref('clean_product_list') }}
 WHERE product_id IS NOT NULL
   AND product_name IS NOT NULL
-  AND price IS NOT NULL;
+  AND price IS NOT NULL
