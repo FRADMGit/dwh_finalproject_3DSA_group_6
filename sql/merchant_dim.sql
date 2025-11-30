@@ -1,4 +1,12 @@
-SELECT *
+SELECT
+    merchant_id,
+    merchant_creation_datetime,
+    merchant_name,
+    merchant_street,
+    merchant_state,
+    merchant_city,
+    merchant_country,
+    merchant_contact_number
 FROM (
     SELECT
         *,
