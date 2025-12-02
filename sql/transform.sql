@@ -17,7 +17,7 @@
       line_id,
       order_id,
       price AS line_price,
-      REGEXP_REPLACE(quantity, '[^0-9\.]', '', 'g') AS line_quantity
+      REGEXP_REPLACE(quantity, '[^0-9\.]', '', 'g')::INT AS line_quantity
   FROM line_item_data_prices
   WHERE line_id IS NOT NULL
       AND order_id IS NOT NULL
@@ -55,7 +55,7 @@
   SELECT DISTINCT
       order_id,
       "user_id",
-      REGEXP_REPLACE("estimated arrival", '[^0-9\.]', '', 'g') AS order_arrival_days,
+      REGEXP_REPLACE("estimated arrival", '[^0-9\.]', '', 'g')::INT AS order_arrival_days,
       transaction_date AS order_transaction_date
   FROM order_data
   WHERE order_id IS NOT NULL
