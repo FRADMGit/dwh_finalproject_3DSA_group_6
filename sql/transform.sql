@@ -1,5 +1,5 @@
 -- clean campaign data
-  DROP TABLE IF EXISTS clean_campaign_data;
+  DROP TABLE IF EXISTS clean_campaign_data CASCADE;
   CREATE TABLE clean_campaign_data AS
   SELECT DISTINCT
       campaign_id,
@@ -11,7 +11,7 @@
   WHERE campaign_id IS NOT NULL
       AND discount IS NOT NULL;
 -- clean line item data prices
-  DROP TABLE IF EXISTS clean_line_item_data_prices;
+  DROP TABLE IF EXISTS clean_line_item_data_prices CASCADE;
   CREATE TABLE clean_line_item_data_prices AS
   SELECT DISTINCT
       line_id,
@@ -24,7 +24,7 @@
   ORDER BY
       line_id ASC;
 -- clean line item data products
-  DROP TABLE IF EXISTS clean_line_item_data_products;
+  DROP TABLE IF EXISTS clean_line_item_data_products CASCADE;
   CREATE TABLE clean_line_item_data_products AS
   SELECT DISTINCT
       line_id,
@@ -36,7 +36,7 @@
       AND order_id IS NOT NULL
   ORDER BY line_id ASC;
 -- clean merchant data
-  DROP TABLE IF EXISTS clean_merchant_data;
+  DROP TABLE IF EXISTS clean_merchant_data CASCADE;
   CREATE TABLE clean_merchant_data AS
   SELECT DISTINCT
       merchant_id,
@@ -50,7 +50,7 @@
   FROM merchant_data
   WHERE merchant_id IS NOT NULL;
 -- clean order data
-  DROP TABLE IF EXISTS clean_order_data;
+  DROP TABLE IF EXISTS clean_order_data CASCADE;
   CREATE TABLE clean_order_data AS
   SELECT DISTINCT
       order_id,
@@ -61,7 +61,7 @@
   WHERE order_id IS NOT NULL
       AND "user_id" IS NOT NULL;
 -- clean order delays
-  DROP TABLE IF EXISTS clean_order_delays;
+  DROP TABLE IF EXISTS clean_order_delays CASCADE;
   CREATE TABLE clean_order_delays AS
   SELECT DISTINCT
     order_id,
@@ -70,7 +70,7 @@
   WHERE "delay in days" IS NOT NULL
     AND order_id IS NOT NULL;
 -- order with merchant data
-  DROP TABLE IF EXISTS clean_order_with_merchant_data;
+  DROP TABLE IF EXISTS clean_order_with_merchant_data CASCADE;
   CREATE TABLE clean_order_with_merchant_data AS
   SELECT DISTINCT
       order_id,
@@ -81,41 +81,41 @@
     AND merchant_id IS NOT NULL 
     AND staff_id IS NOT NULL;
 -- clean product list
-  DROP TABLE IF EXISTS clean_product_list;
+  DROP TABLE IF EXISTS clean_product_list CASCADE;
   CREATE TABLE clean_product_list AS
   SELECT DISTINCT
       product_id,
       product_name,
       price AS product_price,
-      CASE WHEN POSITION('toys' IN product_type) > 0 THEN 1 ELSE 0 END AS toys,
-      CASE WHEN POSITION('entertainment' IN product_type) > 0 THEN 1 ELSE 0 END AS entertainment,
-      CASE WHEN POSITION('breakfast' IN product_type) > 0 THEN 1 ELSE 0 END AS breakfast,
-      CASE WHEN POSITION('lunch' IN product_type) > 0 THEN 1 ELSE 0 END AS lunch,
-      CASE WHEN POSITION('dinner' IN product_type) > 0 THEN 1 ELSE 0 END AS dinner,
-      CASE WHEN POSITION('accessories' IN product_type) > 0 THEN 1 ELSE 0 END AS accessories,
-      CASE WHEN POSITION('kitchenware' IN product_type) > 0 THEN 1 ELSE 0 END AS kitchenware,
-      CASE WHEN POSITION('grocery' IN product_type) > 0 THEN 1 ELSE 0 END AS grocery,
-      CASE WHEN POSITION('apparel' IN product_type) > 0 THEN 1 ELSE 0 END AS apparel,
-      CASE WHEN POSITION('furniture' IN product_type) > 0 THEN 1 ELSE 0 END AS furniture,
-      CASE WHEN POSITION('health' IN product_type) > 0 THEN 1 ELSE 0 END AS health,
-      CASE WHEN POSITION('hygiene' IN product_type) > 0 THEN 1 ELSE 0 END AS hygiene,
-      CASE WHEN POSITION('stationary' IN product_type) > 0 THEN 1 ELSE 0 END AS stationary,
-      CASE WHEN POSITION('tools' IN product_type) > 0 THEN 1 ELSE 0 END AS tools,
-      CASE WHEN POSITION('jewelry' IN product_type) > 0 THEN 1 ELSE 0 END AS jewelry,
-      CASE WHEN POSITION('technology' IN product_type) > 0 THEN 1 ELSE 0 END AS technology,
-      CASE WHEN POSITION('electronics' IN product_type) > 0 THEN 1 ELSE 0 END AS electronics,
-      CASE WHEN POSITION('sports' IN product_type) > 0 THEN 1 ELSE 0 END AS sports,
-      CASE WHEN POSITION('cosmetic' IN product_type) > 0 THEN 1 ELSE 0 END AS cosmetic,
-      CASE WHEN POSITION('music' IN product_type) > 0 THEN 1 ELSE 0 END AS music,
-      CASE WHEN POSITION('cleaning' IN product_type) > 0 THEN 1 ELSE 0 END AS cleaning,
-      CASE WHEN POSITION('appliances' IN product_type) > 0 THEN 1 ELSE 0 END AS appliances,
-      CASE WHEN POSITION('others' IN product_type) > 0 THEN 1 ELSE 0 END AS others
+      (POSITION('toys' IN product_type) > 0) AS toys,
+      (POSITION('entertainment' IN product_type) > 0) AS entertainment,
+      (POSITION('breakfast' IN product_type) > 0) AS breakfast,
+      (POSITION('lunch' IN product_type) > 0) AS lunch,
+      (POSITION('dinner' IN product_type) > 0) AS dinner,
+      (POSITION('accessories' IN product_type) > 0) AS accessories,
+      (POSITION('kitchenware' IN product_type) > 0) AS kitchenware,
+      (POSITION('grocery' IN product_type) > 0) AS grocery,
+      (POSITION('apparel' IN product_type) > 0) AS apparel,
+      (POSITION('furniture' IN product_type) > 0) AS furniture,
+      (POSITION('health' IN product_type) > 0) AS health,
+      (POSITION('hygiene' IN product_type) > 0) AS hygiene,
+      (POSITION('stationary' IN product_type) > 0) AS stationary,
+      (POSITION('tools' IN product_type) > 0) AS tools,
+      (POSITION('jewelry' IN product_type) > 0) AS jewelry,
+      (POSITION('technology' IN product_type) > 0) AS technology,
+      (POSITION('electronics' IN product_type) > 0) AS electronics,
+      (POSITION('sports' IN product_type) > 0) AS sports,
+      (POSITION('cosmetic' IN product_type) > 0) AS cosmetic,
+      (POSITION('music' IN product_type) > 0) AS music,
+      (POSITION('cleaning' IN product_type) > 0) AS cleaning,
+      (POSITION('appliances' IN product_type) > 0) AS appliances,
+      (POSITION('others' IN product_type) > 0) AS others
   FROM product_list
   WHERE product_id IS NOT NULL
     AND product_name IS NOT NULL
     AND price IS NOT NULL;
 -- clean staff data
-  DROP TABLE IF EXISTS clean_staff_data;
+  DROP TABLE IF EXISTS clean_staff_data CASCADE;
   CREATE TABLE clean_staff_data AS
   SELECT DISTINCT
       staff_id,
@@ -131,7 +131,7 @@
   WHERE staff_id IS NOT NULL
     AND name IS NOT NULL;
 -- clean transactional campaign data
-  DROP TABLE IF EXISTS clean_transactional_campaign_data;
+  DROP TABLE IF EXISTS clean_transactional_campaign_data CASCADE;
   CREATE TABLE clean_transactional_campaign_data AS
   SELECT DISTINCT
       campaign_id,
@@ -141,11 +141,11 @@
   WHERE campaign_id IS NOT NULL
     AND order_id IS NOT NULL;
 -- clean user credit card
-  DROP TABLE IF EXISTS clean_user_credit_card;
+  DROP TABLE IF EXISTS clean_user_credit_card CASCADE;
   CREATE TABLE clean_user_credit_card AS
   SELECT DISTINCT * FROM user_credit_card;
 -- clean user data
-  DROP TABLE IF EXISTS clean_user_data;
+  DROP TABLE IF EXISTS clean_user_data CASCADE;
   CREATE TABLE clean_user_data AS
   SELECT DISTINCT
       "user_id",
@@ -163,7 +163,7 @@
   WHERE "user_id" IS NOT NULL
     AND name IS NOT NULL;
 -- clean user job
-  DROP TABLE IF EXISTS clean_user_job;
+  DROP TABLE IF EXISTS clean_user_job CASCADE;
   CREATE TABLE clean_user_job AS
   SELECT DISTINCT
       "user_id",
