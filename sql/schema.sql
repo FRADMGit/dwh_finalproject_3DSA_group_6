@@ -1,9 +1,9 @@
 -- CAMPAIGN DIM
-  DROP TABLE IF EXISTS campaign_dim;
+  DROP TABLE IF EXISTS campaign_dim CASCADE;
   CREATE TABLE campaign_dim AS
   SELECT DISTINCT * FROM clean_campaign_data;
 -- LINE FACT
-  DROP TABLE IF EXISTS line_fact;
+  DROP TABLE IF EXISTS line_fact CASCADE;
   CREATE TABLE line_fact AS
   SELECT DISTINCT
       a.line_id,
@@ -17,7 +17,7 @@
   ON a.line_id = b.line_id
   ORDER BY a.line_id ASC;
 -- MERCHANT DIM
-  DROP TABLE IF EXISTS merchant_dim;
+  DROP TABLE IF EXISTS merchant_dim CASCADE;
   CREATE TABLE merchant_dim AS
   SELECT
       merchant_id,
@@ -39,7 +39,7 @@
   )
   WHERE rn = 1;
 -- ORDER DIM
-  DROP TABLE IF EXISTS order_dim;
+  DROP TABLE IF EXISTS order_dim CASCADE;
   CREATE TABLE order_dim AS
   WITH affiliations AS (
       SELECT
@@ -142,15 +142,15 @@
   JOIN correct_staff s ON a.order_id = s.order_id
   JOIN clean_order_delays d ON a.order_id = d.order_id;
 -- PRODUCT DIM
-  DROP TABLE IF EXISTS product_dim;
+  DROP TABLE IF EXISTS product_dim CASCADE;
   CREATE TABLE product_dim AS
   SELECT DISTINCT * FROM clean_product_list;
 -- STAFF DIM
-  DROP TABLE IF EXISTS staff_dim;
+  DROP TABLE IF EXISTS staff_dim CASCADE;
   CREATE TABLE staff_dim AS
   SELECT DISTINCT * FROM clean_staff_data;
 -- USER DIM
-  DROP TABLE IF EXISTS user_dim;
+  DROP TABLE IF EXISTS user_dim CASCADE;
   CREATE TABLE user_dim AS
   WITH ranked_users AS (
       SELECT
