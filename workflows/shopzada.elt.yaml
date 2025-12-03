@@ -4,6 +4,10 @@ namespace: shopzada
 tasks:
   - id: extract
     type: io.kestra.plugin.scripts.python.Commands
+    taskRunner:
+      type: io.kestra.plugin.scripts.runner.docker.Docker
+      image: shopzada.app:latest
+      pullPolicy: NEVER
     namespaceFiles:
       enabled: True
     outputFiles:
@@ -20,8 +24,6 @@ tasks:
       - line_item_data_products.csv
       - order_with_merchant_data.csv
       - transactional_campaign_data.csv
-    beforeCommands:
-      - pip install pandas openpyxl lxml html5lib pyarrow fastparquet
     commands:
       - python extract.py
       
