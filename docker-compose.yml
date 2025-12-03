@@ -7,6 +7,10 @@ volumes:
     driver: local
 
 services:
+  app:
+    build: .
+    image: shopzada.app
+
   postgres:
     image: postgres:18
     ports:
