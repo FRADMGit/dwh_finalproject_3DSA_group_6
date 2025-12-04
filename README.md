@@ -1,6 +1,18 @@
 # ShopZada
-Course Project: ShopZada 2.0 – Enterprise Data Warehouse Build #
-(under progress)
+Course Project: ShopZada 2.0— Enterprise Dara Warehouse Build 
+The course project aims to build an Enterprise Data Warehouse Build that involves  designing the structure, creating fact and dimension tables, choosing the most fit model to use, and setting up the entire data flow from the raw data to analytics-ready data. 
+
+The project includes:
+
+(1) Requirements Gathering
+
+(2) Data Modeling
+
+(3) ELT Pipeline Development
+
+(4) Data Quality and Governance
+
+(5) Deployment Automation
 
 ## Getting Started
 Prerequisites(under progress)
