@@ -57,11 +57,17 @@ Datasets/
 ├── your_data.json  
 ├── your_data.pickle  
 ├── your_data.parquet
+
 extract.py
+
 schema.sql
+
 tables_for_extract.sql
+
 transform.sql  
+
 view.sql
+
 ![Namespace](https://github.com/FRADMGit/ShopZada/blob/main/docs/Namespace.png)
  
 
