@@ -56,6 +56,7 @@ services:
       - kestra-data:/app/storage
       - /var/run/docker.sock:/var/run/docker.sock
       - /tmp/kestra-wd:/tmp/kestra-wd
+      - ./flows:/local_flows
     environment:
       KESTRA_CONFIGURATION: |
         datasources:
@@ -65,10 +66,6 @@ services:
             username: kestra
             password: k3str4
         kestra:
-          # server:
-          #   basic-auth:
-          #     username: admin@kestra.io # it must be a valid email address
-          #     password: Admin1234 # it must be at least 8 characters long with uppercase letter and a number
           repository:
             type: postgres
           storage:
@@ -81,6 +78,12 @@ services:
             tmp-dir:
               path: /tmp/kestra-wd/tmp
           url: http://localhost:8080/
+        micronaut:
+          io:
+            watch:
+              enabled: true
+              paths:
+                - /local_flows
     ports:
       - "8080:8080"
       - "8081:8081"

@@ -91,6 +91,9 @@
 	        FROM product_dim pd
 	        WHERE pd.product_pk = cp.product_pk
 	    );
+	INSERT INTO product_dim (product_pk, product_name)
+    VALUES (0, 'Unknown');
+
 -- user_dim
     CREATE TABLE IF NOT EXISTS user_dim (
         user_pk TEXT PRIMARY KEY,
@@ -151,6 +154,9 @@
             FROM user_dim ud
             WHERE ud.user_pk = cu.user_pk
         );
+	INSERT INTO user_dim (user_pk, user_name)
+    VALUES (0, 'Unknown');
+
 -- merchant_dim
     CREATE TABLE IF NOT EXISTS merchant_dim (
             merchant_pk TEXT PRIMARY KEY,
@@ -190,6 +196,9 @@
                 FROM merchant_dim md
                 WHERE md.merchant_pk = cm.merchant_pk
             );
+	INSERT INTO merchant_dim (merchant_pk, merchant_name)
+    VALUES (0, 'Unknown');
+
 -- staff_dim
     CREATE TABLE IF NOT EXISTS staff_dim (
         staff_pk TEXT PRIMARY KEY,
@@ -232,6 +241,9 @@
             FROM staff_dim sd
             WHERE sd.staff_pk = cs.staff_pk
         );
+	INSERT INTO staff_dim (staff_pk, staff_name)
+    VALUES (0, 'Unknown');
+
 -- campaign_dim
     CREATE TABLE IF NOT EXISTS campaign_dim (
         campaign_pk VARCHAR(250) PRIMARY KEY,
@@ -262,3 +274,5 @@
             FROM campaign_dim cd
             WHERE cd.campaign_pk = cc.campaign_id
         );
+	INSERT INTO campaign_dim (campaign_pk, product_name)
+    VALUES (0, 'Unknown');
