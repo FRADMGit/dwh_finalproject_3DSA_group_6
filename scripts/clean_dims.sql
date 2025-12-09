@@ -81,7 +81,8 @@
   DROP TABLE IF EXISTS clean_staff CASCADE;
   CREATE TABLE clean_staff AS
   SELECT 'STAFF' || LPAD(CAST((ROW_NUMBER() OVER()) AS TEXT), 5, '0') AS staff_pk, *
-  FROM (SELECT DISTINCT * FROM staff_data WHERE staff_id IS NOT NULL AND staff_creation_datetime ~ '^\d{8}$' NULL ORDER BY staff_creation_datetime);
+  FROM (SELECT DISTINCT * FROM staff_data WHERE staff_id IS NOT NULL AND staff_creation_datetime ~ '^\d{8}$'
+  ORDER BY staff_creation_datetime);
 
 -- clean_user
   DROP TABLE IF EXISTS clean_user CASCADE;
@@ -110,6 +111,7 @@
   )
   SELECT 'USER' || LPAD(CAST((ROW_NUMBER() OVER()) AS TEXT), 5, '0') AS user_pk, * FROM users
   where user_id IS NOT NULL AND merchant_creation_datetime ~ '^\d{8}$';
+
 
 
 
