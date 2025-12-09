@@ -134,9 +134,10 @@
 	user_type,
 	user_job_title,
 	user_job_level,
-	user_credit_card,
+	user_credit_card_number,
 	user_issuing_bank
   FROM users
   where user_id IS NOT NULL AND user_creation_datetime ~ '^\d{8}$' AND user_birthdate ~ '^\d{8}$'
+
 
 
