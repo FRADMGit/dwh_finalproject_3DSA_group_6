@@ -19,7 +19,6 @@
             cs.staff_pk,
             cs.staff_creation_datetime
         FROM order_data od
-		WHERE od.order_id IS NOT NULL AND order_transaction_date ~ '^\d{8}$'
         
         -- FIX 1: Change these to LEFT JOIN. 
         -- If an order has no delay record or merchant map, we keep the order and fill NULLs.
@@ -57,6 +56,7 @@
                 WHERE cs2.staff_id = msm.staff_id
                 AND cs2.staff_creation_datetime <= od.order_transaction_date
             )
+		WHERE od.order_id IS NOT NULL AND order_transaction_date ~ '^\d{8}$'
     )
     SELECT
         order_id,
@@ -81,4 +81,5 @@
         FROM line_item_data_prices
         FULL JOIN line_item_data_products USING(line_id, order_id)
         JOIN clean_product USING(product_id, product_name)
+
 
