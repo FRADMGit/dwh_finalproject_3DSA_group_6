@@ -102,8 +102,11 @@
       user_job_level,
       user_credit_card_number,
       user_issuing_bank
-    FROM user_data a JOIN user_job b USING(user_id, user_name) JOIN user_credit_card c USING(user_id, user_name)
+    FROM user_data a
+	LEFT JOIN user_job b USING(user_id, user_name)
+	LEFT JOIN user_credit_card c USING(user_id, user_name)
     ORDER BY user_creation_datetime
   )
   SELECT 'USER' || LPAD(CAST((ROW_NUMBER() OVER()) AS TEXT), 5, '0') AS user_pk, * FROM users
   where user_id IS NOT NULL;
+
