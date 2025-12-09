@@ -136,12 +136,18 @@ def integrate(table):
         df['credit_card_number'] = df['credit_card_number'].astype(str).apply(lambda x: f'"{x}"')
 
     elif table == "line_item_data_prices":
-        df = df[['Unnamed: 0', 'order_id', 'price', 'quantity']]
-        df = df.rename(columns={'Unnamed: 0': 'line_id'})
+        if 'Unnamed: 0' in df.columns.tolist():
+            df = df[['Unnamed: 0', 'order_id', 'price', 'quantity']]
+            df = df.rename(columns={'Unnamed: 0': 'line_id'})
+        else:
+            df = df[['line_id', 'order_id', 'price', 'quantity']]
 
     elif table == "line_item_data_products":
-        df = df[['Unnamed: 0', 'order_id', 'product_name', 'product_id']]
-        df = df.rename(columns={'Unnamed: 0': 'line_id'})
+        if 'Unnamed: 0' in df.columns.tolist():
+            df = df[['Unnamed: 0', 'order_id', 'product_name', 'product_id']]
+            df = df.rename(columns={'Unnamed: 0': 'line_id'})
+        else:
+            df = df[['line_id', 'order_id', 'price', 'quantity']]
 
     elif table == "order_with_merchant_data":
         df = df[['order_id', 'merchant_id', 'staff_id']]
