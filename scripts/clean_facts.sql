@@ -34,7 +34,7 @@
                 SELECT MAX(cu2.user_creation_datetime)
                 FROM clean_user cu2
                 WHERE cu2.user_id = od.user_id
-                AND cu2.user_creation_datetime <= od.order_transaction_date 
+                AND cu2.user_creation_datetime <= od.order_transaction_date::DATE 
             )
 
         -- FIX 3: Merchant Join
@@ -44,7 +44,7 @@
                 SELECT MAX(cm2.merchant_creation_datetime)
                 FROM clean_merchant cm2
                 WHERE cm2.merchant_id = msm.merchant_id
-                AND cm2.merchant_creation_datetime <= od.order_transaction_date
+                AND cm2.merchant_creation_datetime <= od.order_transaction_date::DATE
             )
 
         -- FIX 4: Staff Join
@@ -54,7 +54,7 @@
                 SELECT MAX(cs2.staff_creation_datetime)
                 FROM clean_staff cs2
                 WHERE cs2.staff_id = msm.staff_id
-                AND cs2.staff_creation_datetime <= od.order_transaction_date
+                AND cs2.staff_creation_datetime <= od.order_transaction_date::DATE
             )
 		WHERE od.order_id IS NOT NULL AND order_transaction_date ~ '^\d{8}$'
     )
@@ -81,5 +81,6 @@
         FROM line_item_data_prices
         FULL JOIN line_item_data_products USING(line_id, order_id)
         JOIN clean_product USING(product_id, product_name)
+
 
 
