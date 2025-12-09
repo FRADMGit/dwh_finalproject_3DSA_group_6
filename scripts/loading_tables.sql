@@ -9,13 +9,13 @@ CREATE TABLE user_job (
 DROP TABLE IF EXISTS user_data CASCADE;
 CREATE TABLE user_data (
   "user_id" VARCHAR(250),
-  user_creation_datetime TIMESTAMP,
+  user_creation_datetime VARCHAR(250),
   user_name VARCHAR(250),
   user_street VARCHAR(250),
   user_state VARCHAR(250),
   user_city VARCHAR(250),
   user_country VARCHAR(250),
-  user_birthdate TIMESTAMP,
+  user_birthdate VARCHAR(250),
   user_gender VARCHAR(250),
   user_device_address VARCHAR(250),
   user_type VARCHAR(250)
@@ -39,7 +39,7 @@ CREATE TABLE staff_data (
   staff_city VARCHAR(250),
   staff_country VARCHAR(250),
   staff_contact_number VARCHAR(250),
-  staff_creation_datetime TIMESTAMP
+  staff_creation_datetime VARCHAR(250)
 );
 
 DROP TABLE IF EXISTS order_delays CASCADE;
@@ -67,7 +67,7 @@ CREATE TABLE campaign_data (
 DROP TABLE IF EXISTS merchant_data CASCADE;
 CREATE TABLE merchant_data (
   merchant_id VARCHAR(250),
-  merchant_creation_datetime TIMESTAMP,
+  merchant_creation_datetime VARCHAR(250),
   merchant_name VARCHAR(250),
   merchant_street VARCHAR(250),
   merchant_state VARCHAR(250),
@@ -115,4 +115,5 @@ CREATE TABLE transactional_campaign_data (
   "estimated arrival" VARCHAR(250),
   availed NUMERIC
 );
+
 
