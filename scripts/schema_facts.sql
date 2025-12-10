@@ -21,7 +21,7 @@
         order_delay_days
     )
     SELECT
-        co.order_id,
+        co.order_pk,
         COALESCE(ud.user_pk, 'UNKNOWN'),
         COALESCE(md.merchant_pk, 'UNKNOWN'),
         COALESCE(sd.staff_pk, 'UNKNOWN'),
@@ -34,7 +34,7 @@
     LEFT JOIN merchant_dim md   ON co.merchant_pk = md.merchant_pk
     LEFT JOIN staff_dim sd      ON co.staff_pk = sd.staff_pk
     LEFT JOIN campaign_dim cd   ON co.campaign_pk = cd.campaign_pk
-    WHERE co.order_id IS NOT NULL
+    WHERE co.order_pk IS NOT NULL
     ON CONFLICT (order_pk)
     DO UPDATE SET
         user_pk = EXCLUDED.user_pk,
@@ -66,7 +66,7 @@
         line_quantity
     )
     SELECT
-        lid.line_id,
+        lid.line_pk,
         COALESCE(od.order_pk, 'UNKNOWN'),
         COALESCE(pd.product_pk, 'UNKNOWN'),
         lid.line_price,
@@ -74,10 +74,10 @@
     FROM clean_line lid
     LEFT JOIN order_dim od   ON lid.order_id = od.order_pk
     LEFT JOIN product_dim pd ON lid.product_pk = pd.product_pk
-    WHERE lid.line_id IS NOT NULL
+    WHERE lid.line_pk IS NOT NULL
     ON CONFLICT (line_pk)
     DO UPDATE SET
         order_pk = EXCLUDED.order_pk,
         product_pk = EXCLUDED.product_pk,
         line_price = EXCLUDED.line_price,
-        line_quantity = EXCLUDED.line_quantity;
+        line_quantity = EXCLUDED.line_quantity

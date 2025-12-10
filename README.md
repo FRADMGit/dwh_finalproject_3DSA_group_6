@@ -103,3 +103,34 @@ This triggers the pipeline:
 4. Load data into the presentation layer
 
 ---
+
+## 3. PGADMIN4 [OPTIONAL]
+
+Follow these steps to open the warehouse in PGAdmin4.
+
+1. Make sure `localhost:8080` is still accessible.  
+2. In your browser, open `localhost:5050`  
+3. Right-click on Servers → Register → Server…  
+
+
+   - **General:** choose any name  
+   - **Connection:**  
+     Host name/address: `postgres`  
+     Port: `5432`  
+     Maintenance Database: `kestra`  
+     Username: `kestra`  
+     Password: `k3str4`  
+4. Save
+
+---
+
+## 4. TABLEAU [OPTIONAL]
+1. Install and open Tableau Desktop (NOT PUBLIC)
+2. Connect to a server → More → PostgreSQL  
+   - Server: `localhost`  
+   - Port: `5432`  
+   - Database: `kestra`  
+   - Username: `kestra`  
+   - Password: `k3str4`
+
+---

@@ -33,7 +33,7 @@
 	ORDER BY product_id
   )
   SELECT
-    'PRODUCT' || LPAD(CAST((ROW_NUMBER() OVER()) AS TEXT), 5, '0') AS product_pk,
+    MD5(product_id || product_name) AS product_pk,
     *,
 	NOT (
       toys OR entertainment OR breakfast OR lunch OR dinner OR accessories OR 
@@ -47,7 +47,7 @@
   DROP TABLE IF EXISTS clean_campaign CASCADE;
   CREATE TABLE clean_campaign AS
   SELECT DISTINCT
-    campaign_id,
+    campaign_id as campaign_pk,
     campaign_name,
     regexp_replace(campaign_description, '\s*-\s*.*$', '') AS campaign_description,
     regexp_replace(campaign_description, '^.*-\s*', '') AS campaign_description_person,
@@ -74,14 +74,14 @@
 	AND TO_TIMESTAMP(merchant_creation_datetime, 'YYYY-MM-DD HH24:MI:SS') IS NOT NULL
     ORDER BY merchant_creation_datetime
   )
-  SELECT 'MERCHANT' || LPAD(CAST((ROW_NUMBER() OVER()) AS TEXT), 5, '0') AS merchant_pk, *
+  SELECT MD5(merchant_id || merchant_creation_datetime) AS merchant_pk, *
   FROM merchants;
 
 -- clean_staff
   DROP TABLE IF EXISTS clean_staff CASCADE;
   CREATE TABLE clean_staff AS
   SELECT
-	  'STAFF' || LPAD(CAST((ROW_NUMBER() OVER()) AS TEXT), 5, '0') AS staff_pk,
+	  MD5(staff_id || staff_creation_datetime) AS staff_pk,
 	  staff_id,
 	  staff_name,
 	  staff_job_level,
@@ -120,7 +120,7 @@
     ORDER BY user_creation_datetime
   )
   SELECT
-	'USER' || LPAD(CAST((ROW_NUMBER() OVER()) AS TEXT), 5, '0') AS user_pk,
+	MD5(user_id || user_creation_datetime) AS user_pk,
 	user_id,
 	user_name,
 	user_creation_datetime::TIMESTAMP AS user_creation_datetime,
@@ -140,7 +140,3 @@
   where user_id IS NOT NULL
   AND TO_TIMESTAMP(user_creation_datetime, 'YYYY-MM-DD HH24:MI:SS') IS NOT NULL
   AND TO_TIMESTAMP(user_birthdate, 'YYYY-MM-DD HH24:MI:SS') IS NOT NULL
-
-
-
-

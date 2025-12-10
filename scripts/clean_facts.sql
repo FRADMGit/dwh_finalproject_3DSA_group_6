@@ -59,7 +59,7 @@
 		WHERE od.order_id IS NOT NULL AND TO_DATE(order_transaction_date, 'YYYY-MM-DD') IS NOT NULL
     )
     SELECT
-        order_id,
+        order_id as order_pk,
         user_pk,
         merchant_pk,
         staff_pk,
@@ -73,7 +73,7 @@
     DROP TABLE IF EXISTS clean_line CASCADE;
     CREATE TABLE clean_line AS
         SELECT
-            line_id,
+            line_id as line_pk,
             order_id,
             product_pk,
             line_price,
@@ -81,7 +81,3 @@
         FROM line_item_data_prices
         FULL JOIN line_item_data_products USING(line_id, order_id)
         JOIN clean_product USING(product_id, product_name)
-
-
-
-

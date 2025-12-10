@@ -261,13 +261,13 @@
         campaign_description_person, campaign_discount
     )
     SELECT DISTINCT
-        cc.campaign_id,
+        cc.campaign_pk,
         cc.campaign_name,
         cc.campaign_description,
         cc.campaign_description_person,
         cc.campaign_discount
     FROM clean_campaign cc
-    WHERE cc.campaign_id IS NOT NULL
+    WHERE cc.campaign_pk IS NOT NULL
     ON CONFLICT (campaign_pk) DO UPDATE SET
         campaign_name = EXCLUDED.campaign_name,
         campaign_description = EXCLUDED.campaign_description,
@@ -276,4 +276,4 @@
 
     INSERT INTO campaign_dim (campaign_pk, campaign_name)
     VALUES ('UNKNOWN', 'UNKNOWN')
-    ON CONFLICT (campaign_pk) DO NOTHING;
+    ON CONFLICT (campaign_pk) DO NOTHING
