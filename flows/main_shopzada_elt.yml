@@ -1,12 +1,12 @@
 id: elt
 namespace: shopzada
 
-tasks:
-  inputs:
-    - id: download_uri
-      type: STRING
-      defaults: "https://raw.githubusercontent.com/FRADMGit/ShopZada/main/Datasets.zip"
+inputs:
+  - id: download_uri
+    type: STRING
+    defaults: "https://raw.githubusercontent.com/FRADMGit/ShopZada/main/Datasets.zip"
 
+tasks:
   - id: download_dataset
     type: io.kestra.plugin.core.http.Download
     uri: "{{ inputs.download_uri }}"
