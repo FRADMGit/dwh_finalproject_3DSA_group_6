@@ -89,7 +89,7 @@ Login using the provided credentials:
 * **Email:** `admin@kestra.io`
 * **Name:** `kestra`
 * **Last Name:** `kestra`
-* **Password:** `k3str4`
+* **Password:** `Kestra123`
 
 ### **e. Run the Main ELT Flow**
 
